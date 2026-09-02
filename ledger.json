@@ -1,0 +1,74 @@
+{
+  "updated": "2026-09-02",
+  "note": "One entry per company. tiers must be ordered lowest pay to highest. All figures USD. ratio = CEO total / median employee as disclosed by the company. Add a company by copying an entry; the site reads this file on load.",
+  "companies": [
+    {
+      "name": "Apple",
+      "country": "US",
+      "fiscalYear": "2025",
+      "ratio": 533,
+      "ratioNote": "CEO $74.3M vs median $139,483",
+      "caption": "Apple's own filings put the median employee at $139,483 and the CEO at $74.3 million. Retail and engineering figures are employee self-reports; Apple does not publish them.",
+      "source": "SEC DEF 14A, January 2026",
+      "tiers": [
+        {"label": "Retail specialist", "note": "store floor, all in", "pay": 70000},
+        {"label": "Median employee", "note": "Apple's SEC figure", "pay": 139483},
+        {"label": "Senior engineer", "note": "crowdsourced median", "pay": 358000},
+        {"label": "Senior vice president", "note": "each of several", "pay": 27000000},
+        {"label": "Chief executive", "note": "2025 total", "pay": 74294811}
+      ]
+    },
+    {
+      "name": "Walmart",
+      "country": "US",
+      "fiscalYear": "2026",
+      "ratio": 958,
+      "ratioNote": "CEO $29.2M vs median associate $30,520",
+      "caption": "Walmart's median associate, by the company's own calculation, made $30,520. The CEO made $29,240,930. Walmart employs about 2.1 million people.",
+      "source": "SEC DEF 14A, April 2026",
+      "tiers": [
+        {"label": "Median associate", "note": "Walmart's SEC figure", "pay": 30520},
+        {"label": "Chief executive", "note": "fiscal 2026 total", "pay": 29240930}
+      ]
+    },
+    {
+      "name": "Nike",
+      "country": "US",
+      "fiscalYear": "2026",
+      "ratio": 746,
+      "ratioNote": "CEO $36.3M vs median $48,695",
+      "caption": "Nike's median employee is a retail worker in the United Kingdom making $48,695. The CEO made $36,340,876.",
+      "source": "SEC DEF 14A, July 2026",
+      "tiers": [
+        {"label": "Median employee", "note": "a UK retail worker", "pay": 48695},
+        {"label": "Chief executive", "note": "fiscal 2026 total", "pay": 36340876}
+      ]
+    },
+    {
+      "name": "FTSE 100 (UK, index median)",
+      "country": "UK",
+      "fiscalYear": "2025",
+      "ratio": 113,
+      "ratioNote": "Median FTSE 100 CEO £4.4M vs UK median full-time worker £39,039",
+      "caption": "Not one company but the median across Britain's 100 largest. The typical FTSE 100 CEO earns the median UK full-time salary by lunchtime on the third working day of January.",
+      "source": "High Pay Centre, Fat Cat Day 2026. Converted at roughly 1.27 USD/GBP.",
+      "tiers": [
+        {"label": "UK median full-time worker", "note": "£39,039", "pay": 49580},
+        {"label": "Median FTSE 100 chief executive", "note": "£4.4M, excluding pension", "pay": 5588000}
+      ]
+    },
+    {
+      "name": "PSEG (utility)",
+      "country": "US",
+      "fiscalYear": "2025",
+      "ratio": 79,
+      "ratioNote": "CEO $13.9M vs median $174,510",
+      "caption": "Included as a contrast. A large US utility with a unionized, skilled workforce: median employee $174,510, CEO $13.9 million. Same country, same rules, a tenth of the gap.",
+      "source": "SEC DEF 14A, March 2026",
+      "tiers": [
+        {"label": "Median employee", "note": "PSEG's SEC figure", "pay": 174510},
+        {"label": "Chief executive", "note": "2025 total", "pay": 13866735}
+      ]
+    }
+  ]
+}

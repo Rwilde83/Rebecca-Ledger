@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Rebecca Ledger — what the world's companies pay, bottom to top, drawn to scale</title>
+<meta name="description" content="A public ledger of pay from the store floor to the CEO, worldwide, drawn to the same scale. And a design to make corruption unprofitable: AI companies audit each other, citizens audit the AI, and exposing corruption pays better than hiding it.">
+<meta property="og:title" content="The Rebecca Ledger">
+<meta property="og:description" content="One year of the CEO. A thousand years of the person who sold you the phone. Every company, every country, one scale.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F2F4F5;--ink:#1C2430;--cobalt:#1F4FD8;--marker:#F5C518;
+    --mute:#6E7882;--rule:#D5DADF;--maxw:64rem;--prose:38rem;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  body{margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Bricolage Grotesque",system-ui,-apple-system,"Segoe UI",sans-serif;
+    font-size:1.0625rem;line-height:1.55;-webkit-font-smoothing:antialiased}
+  a{color:var(--cobalt)}
+  a:focus-visible,button:focus-visible,select:focus-visible{outline:3px solid var(--marker);outline-offset:3px}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 1.25rem}
+  .prose{max-width:var(--prose)}
+  h1,h2,h3{font-variation-settings:"opsz" 96;line-height:1.05;margin:0 0 1rem;letter-spacing:-.01em}
+  h1{font-size:clamp(2.3rem,6.5vw,4.6rem);font-weight:700}
+  h2{font-size:clamp(1.6rem,4vw,2.4rem);font-weight:650}
+  h3{font-size:1.25rem;font-weight:600;margin-bottom:.35rem}
+  p{margin:0 0 1rem}
+  section{padding:4rem 0;border-top:1px solid var(--rule)}
+  .lede{font-size:1.25rem;line-height:1.45}
+  .mute{color:var(--mute)} .small{font-size:.9rem}
+
+  header{padding:1.25rem 0}
+  header .wrap{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;flex-wrap:wrap}
+  .brand{font-weight:700;text-decoration:none;color:var(--ink);font-size:1.1rem}
+  nav a{color:var(--ink);text-decoration:none;margin-left:1.1rem;font-size:.95rem;border-bottom:2px solid transparent}
+  nav a:hover{border-bottom-color:var(--marker)}
+
+  .hero{padding:2rem 0 3.5rem;border-top:0}
+  .hero h1{max-width:22ch;margin-bottom:1.25rem}
+
+  /* ledger */
+  .ledger-controls{display:flex;gap:.75rem;align-items:center;flex-wrap:wrap;margin:1.5rem 0 1rem}
+  .ledger-controls label{font-weight:500}
+  select{font:inherit;padding:.5rem .7rem;border:2px solid var(--ink);background:#fff;border-radius:4px;color:var(--ink)}
+  .ledger{display:grid;gap:.5rem;margin:.5rem 0 1rem}
+  .row{display:grid;grid-template-columns:minmax(10rem,16rem) 1fr;align-items:center;gap:.75rem}
+  .row .who{font-weight:500;line-height:1.2}
+  .row .who small{display:block;color:var(--mute);font-weight:400;font-size:.85rem}
+  .row .track{position:relative;height:1.6rem}
+  .row .bar{position:absolute;left:0;top:0;height:100%;background:var(--ink);min-width:3px;
+    transform-origin:left;transform:scaleX(0);transition:transform 1s cubic-bezier(.2,.7,.2,1)}
+  .row.top .bar{background:var(--marker)}
+  .ledger.in .bar{transform:scaleX(1)}
+  .row .val{position:absolute;top:50%;transform:translateY(-50%);white-space:nowrap;font-size:.9rem}
+  .row.top .val{right:.5rem;font-weight:600}
+  @media (prefers-reduced-motion:reduce){.row .bar{transition:none;transform:none}}
+  @media (max-width:600px){.row{grid-template-columns:1fr;gap:.2rem}.row .track{height:1.2rem}}
+  .caption{font-size:.9rem;color:var(--mute);max-width:var(--prose)}
+  .ratio-line{font-size:clamp(1.3rem,3.5vw,2rem);font-weight:600;margin:.5rem 0 1rem;line-height:1.2}
+
+  /* compare grid */
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(14rem,1fr));gap:1.25rem;margin-top:1.5rem}
+  .co{border-top:3px solid var(--ink);padding-top:.75rem}
+  .co .r{font-size:2.4rem;font-weight:700;line-height:1;font-variation-settings:"opsz" 96}
+  .co .r small{font-size:1rem;font-weight:500;color:var(--mute);margin-left:.2rem}
+  .co .n{font-weight:600;margin-top:.35rem}
+  .co .d{font-size:.9rem;color:var(--mute)}
+  .co.low{border-top-color:var(--cobalt)}
+
+  .sentence{background:var(--ink);color:var(--paper);padding:3.5rem 0}
+  .sentence p{font-size:clamp(1.4rem,3.4vw,2.2rem);line-height:1.25;font-weight:500;max-width:28ch;margin:0}
+  .sentence em{font-style:normal;color:var(--marker)}
+
+  .flow{margin-top:1.5rem}
+  .layer{display:grid;grid-template-columns:3.5rem 1fr;gap:1rem;padding:1.5rem 0;border-top:1px solid var(--rule)}
+  .layer:first-child{border-top:0;padding-top:0}
+  .layer .n{font-size:2rem;font-weight:700;line-height:1;color:var(--cobalt);font-variation-settings:"opsz" 96}
+  .layer p{max-width:var(--prose)}
+
+  table{border-collapse:collapse;width:100%;margin:1.5rem 0;font-size:.95rem}
+  th,td{text-align:left;padding:.6rem .5rem;border-bottom:1px solid var(--rule);vertical-align:top}
+  th{font-weight:600}
+  @media (max-width:600px){table{font-size:.85rem}th,td{padding:.5rem .3rem}}
+
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem}
+  @media (max-width:760px){.cols{grid-template-columns:1fr}}
+  .cols ul{padding-left:1.1rem;margin:0} .cols li{margin-bottom:.5rem}
+
+  .cta{background:var(--marker);color:var(--ink);padding:3.5rem 0}
+  .btn{display:inline-block;background:var(--ink);color:var(--paper);text-decoration:none;padding:.85rem 1.3rem;font-weight:600;border-radius:4px;margin:.25rem .5rem .25rem 0}
+  .btn.secondary{background:transparent;color:var(--ink);border:2px solid var(--ink)}
+  .btn:hover{opacity:.9}
+  details{margin:1rem 0} summary{cursor:pointer;font-weight:600}
+
+  .dedication{border-top:1px solid var(--rule);padding:3.5rem 0}
+  .dedication blockquote{margin:0;max-width:var(--prose);font-size:1.2rem;line-height:1.5}
+  .dedication cite{display:block;margin-top:1rem;font-style:normal;color:var(--mute);font-size:.95rem}
+
+  footer{padding:2.5rem 0 3rem;font-size:.9rem;color:var(--mute)}
+  footer p{max-width:var(--prose)}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <a class="brand" href="#top">The Rebecca Ledger</a>
+    <nav aria-label="Sections">
+      <a href="#ledger">The ledger</a>
+      <a href="#how">The fix</a>
+      <a href="#rules">The rules</a>
+      <a href="#help">Get involved</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+<section class="hero" id="ledger">
+  <div class="wrap">
+    <h1>What the world's biggest companies pay, from the floor to the top, drawn to one scale.</h1>
+    <p class="lede prose">Every company below reports these numbers to regulators. Almost nobody reads them. This is what they look like side by side.</p>
+
+    <div class="ledger-controls">
+      <label for="pick">Company</label>
+      <select id="pick" aria-controls="rows"></select>
+    </div>
+    <p class="ratio-line" id="ratioline"></p>
+    <div class="ledger" id="rows" role="img" aria-live="polite"></div>
+    <p class="caption" id="cap"></p>
+
+    <h2 style="margin-top:3rem">CEO pay as a multiple of the median worker</h2>
+    <div class="grid" id="grid"></div>
+    <p class="caption" style="margin-top:1.25rem">Ratios are each company's own SEC or annual-report disclosure for its latest fiscal year, except the UK figure, which is the High Pay Centre's index-wide median. Companies use different methods, so treat cross-company comparison as approximate. Blue marks the ones under 100 to 1. New companies are added regularly; the data file is public.</p>
+  </div>
+</section>
+
+<div class="sentence">
+  <div class="wrap">
+    <p>AI companies audit each other. Citizens audit the AI. And exposing corruption <em>pays better than hiding it.</em></p>
+  </div>
+</div>
+
+<section id="how">
+  <div class="wrap">
+    <h2>The fix</h2>
+    <p class="prose">The gap on the ledger isn't a mystery and it isn't a math problem. It persists because nobody is required to close it and nobody is paid to expose it. Change both. Four layers, each one already proven somewhere, never yet assembled.</p>
+
+    <div class="flow">
+      <div class="layer"><div class="n">1</div><div>
+        <h3>Three AI monitors watch each other and every large company</h3>
+        <p>Three independent AI systems, run by organizations in different countries with different funding and different training. Each audits the other two, plus the payroll, executive pay, supplier contracts, and political spending of every company above a size threshold, in every country it sells in. Their auditing code is public. When they disagree, the disagreement is published too.</p>
+      </div></div>
+      <div class="layer"><div class="n">2</div><div>
+        <h3>Citizens chosen by lottery check the AI</h3>
+        <p>Panels of ordinary people selected at random from every participating country, not elected. Short terms, paid well, rotated constantly, identities protected while serving. They can demand plain-language explanations, order re-analysis, and escalate findings. The AI cannot overrule them.</p>
+      </div></div>
+      <div class="layer"><div class="n">3</div><div>
+        <h3>Whoever exposes corruption gets paid</h3>
+        <p>Anyone, anywhere, who reveals concealment or wrongdoing receives 20 to 40 percent of the penalty, funded from the penalty itself. The largest payouts go to exposing collusion among the monitors or inside a citizen panel, because those are the failures that would break the system. Legal protection and income replacement come with it.</p>
+        <p class="mute small">The US SEC whistleblower program has paid out billions since 2011 for exactly this reason: it made reporting fraud more profitable than participating in it.</p>
+      </div></div>
+      <div class="layer"><div class="n">4</div><div>
+        <h3>Humans judge. The AI only finds and publishes.</h3>
+        <p>No monitor imposes a penalty. Findings that survive citizen review go to courts and public enforcement bodies in the relevant country. The AI is the auditor. It is never the judge.</p>
+      </div></div>
+    </div>
+
+    <p class="prose" style="margin-top:2rem">This is also how you keep AI itself honest while it's still small enough to hold. An AI that audits companies in public, under citizen review, with its code open, is an AI that cannot quietly become something else. Build the watchdog before the thing it watches is too big to leash.</p>
+  </div>
+</section>
+
+<section id="rules">
+  <div class="wrap">
+    <h2>The rules it would enforce</h2>
+    <p class="prose">The monitors enforce whatever the public sets. This is the starting proposal. It applies to every company above the size threshold, in every country, including their suppliers.</p>
+    <table>
+      <thead><tr><th>Tier</th><th>Rule</th></tr></thead>
+      <tbody>
+        <tr><td>Floor</td><td>A local living wage in every country of operation, suppliers included. Not the legal minimum: enough for housing, food, healthcare, and savings where the person actually lives.</td></tr>
+        <tr><td>Frontline</td><td>Living wage plus meaningful equity. Full-time available to everyone who wants it.</td></tr>
+        <tr><td>Skilled</td><td>Market pay. Bands published by level and location.</td></tr>
+        <tr><td>Executives</td><td>Total compensation capped at 15 to 20 times the company's global median employee.</td></tr>
+        <tr><td>Innovation</td><td>Royalties on specific products, paid to the people who built them, capped per person per breakthrough. Reward invention where it happens, not two levels up.</td></tr>
+        <tr><td>Profit share</td><td>A fixed percentage of net income distributed to all employees.</td></tr>
+        <tr><td>Transparency</td><td>Pay ratio and bands published every year, in plain language, in every language the company operates in.</td></tr>
+      </tbody>
+    </table>
+    <p class="prose">Applied to Apple, the CEO goes from $74 million to about $3 million, every store worker gains $10 to $15k, every factory worker in the supply chain reaches a living wage, and the company stays the most profitable on earth. The cost fits inside one year of stock buybacks. The same arithmetic holds for nearly every company on the ledger.</p>
+  </div>
+</section>
+
+<section id="status">
+  <div class="wrap">
+    <h2>Is anyone building this?</h2>
+    <div class="cols">
+      <div>
+        <h3>What exists</h3>
+        <ul>
+          <li>Companies use AI to audit themselves. The vendor works for the company.</li>
+          <li>Governments are regulating AI. They are not using it to audit corporations.</li>
+          <li>Whistleblower bounties exist and work at the SEC and a few other agencies.</li>
+          <li>Citizens' assemblies have run successfully in Ireland, France, and dozens of cities.</li>
+          <li>Pay ratios are public by law in the US and UK, buried in filings almost no one reads.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>What is missing</h3>
+        <ul>
+          <li>A publicly owned AI that audits companies rather than serving them.</li>
+          <li>Any arrangement where AI labs monitor each other.</li>
+          <li>A connection between the bounty and the detector.</li>
+          <li>Anyone with the incentive to build it. The labs sell compliance tools to the companies they would be auditing.</li>
+        </ul>
+      </div>
+    </div>
+    <p class="prose" style="margin-top:2rem">Every component is proven. The assembly is unbuilt. That is either a reason it can't work, or a reason it hasn't been tried. Help figure out which.</p>
+  </div>
+</section>
+
+<section class="cta" id="help">
+  <div class="wrap">
+    <h2>Three things you can do</h2>
+    <p class="prose">Send the ledger to one person. Tell me where the fix breaks. Or send me a company's numbers and I'll add them.</p>
+    <p>
+      <a class="btn" href="design.md">Read the full design</a>
+      <a class="btn secondary" href="mailto:YOUR-EMAIL-HERE?subject=Rebecca%20Ledger">Write to me</a>
+      <a class="btn secondary" href="ledger.json">The data</a>
+    </p>
+    <details>
+      <summary>Known weak points, so you don't have to find them</summary>
+      <ul>
+        <li>All three major AI labs today share a country, investors, and a hiring pool. That is one faction, not three.</li>
+        <li>Correlated blind spots: AIs trained on similar data miss the same things. The citizen panels exist to catch this, and might not.</li>
+        <li>The system guarantees compliance, not fairness. If people agree on bad rules, it will enforce bad rules.</li>
+        <li>Capital can flow to countries that opt out. The only lever is market access: sell here, get audited here.</li>
+        <li>Public ownership only works if the public watches. Apathy beats every other failure mode.</li>
+      </ul>
+    </details>
+  </div>
+</section>
+
+<section class="dedication" id="rebecca">
+  <div class="wrap">
+    <h2>Why Rebecca</h2>
+    <blockquote>
+      This is named for Rebecca Sue Smith, my best friend, who taught me to look at how people are treated and refuse to call it normal. She isn't here to see it. She'd have wanted it built anyway.
+      <cite>— Ryan Wilde</cite>
+    </blockquote>
+    <p class="mute small prose" style="margin-top:1.5rem">A ledger is where you write down what is owed. That seemed like the right thing to put her name on.</p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p><strong>Sources.</strong> Company figures are from each company's own proxy statement or annual report for its most recent fiscal year (Apple, Walmart, Nike, Starbucks, PSEG: SEC Form DEF 14A, 2026). UK figures: High Pay Centre, Fat Cat Day 2026. Apple retail and engineering pay: Glassdoor, PayScale, levels.fyi self-reports; Apple does not publish them. Everything under "the rules" is a proposal.</p>
+    <p>Maintained by <a href="https://wilde.energy">Ryan Wilde</a>. Free to copy, adapt, and improve. If you build on it, tell me.</p>
+  </div>
+</footer>
+
+<script>
+(async function(){
+  let data;
+  try{
+    const r = await fetch('ledger.json',{cache:'no-store'});
+    data = await r.json();
+  }catch(e){
+    data = window.__LEDGER_FALLBACK__;
+  }
+  const pick=document.getElementById('pick'), rows=document.getElementById('rows'),
+        cap=document.getElementById('cap'), line=document.getElementById('ratioline'), grid=document.getElementById('grid');
+  const fmt=n=>n>=1e6?'$'+(n/1e6).toFixed(n>=1e7?1:2).replace(/\.?0+$/,'')+'M':n>=1e3?'$'+Math.round(n/1e3)+'k':'$'+n;
+
+  data.companies.forEach((c,i)=>{const o=document.createElement('option');o.value=i;o.textContent=c.name+' · '+c.country;pick.appendChild(o)});
+
+  function render(i){
+    const c=data.companies[i]; const top=Math.max(...c.tiers.map(t=>t.pay));
+    rows.classList.remove('in'); rows.innerHTML='';
+    c.tiers.forEach(t=>{
+      const w=Math.max(t.pay/top*100,0.05);
+      const row=document.createElement('div'); row.className='row'+(t.pay===top?' top':'');
+      row.innerHTML=`<div class="who">${t.label}<small>${t.note||''}</small></div>
+        <div class="track"><div class="bar" style="width:${w}%"></div>
+        <span class="val" style="${t.pay===top?'':'left:calc('+w+'% + .5rem)'}">${fmt(t.pay)}</span></div>`;
+      rows.appendChild(row);
+    });
+    const low=c.tiers[0].pay, ratio=Math.round(top/low);
+    line.textContent=`${ratio.toLocaleString()} years of the ${c.tiers[0].label.toLowerCase()} to equal one year of the ${c.tiers[c.tiers.length-1].label.toLowerCase()}.`;
+    cap.textContent=c.caption||'';
+    rows.setAttribute('aria-label',c.name+' pay ladder: '+c.tiers.map(t=>t.label+' '+fmt(t.pay)).join(', '));
+    requestAnimationFrame(()=>requestAnimationFrame(()=>rows.classList.add('in')));
+  }
+  pick.addEventListener('change',e=>render(+e.target.value));
+
+  const sorted=[...data.companies].filter(c=>c.ratio).sort((a,b)=>b.ratio-a.ratio);
+  sorted.forEach(c=>{
+    const d=document.createElement('div'); d.className='co'+(c.ratio<100?' low':'');
+    d.innerHTML=`<div class="r">${c.ratio.toLocaleString()}<small>to 1</small></div><div class="n">${c.name}</div><div class="d">${c.ratioNote||''}</div>`;
+    grid.appendChild(d);
+  });
+  render(0);
+})();
+</script>
+<script>
+window.__LEDGER_FALLBACK__={"companies":[{"name":"Apple","country":"US","ratio":533,"ratioNote":"CEO $74.3M vs median $139,483","caption":"Apple's own filings put the median employee at $139,483 and the CEO at $74.3 million. Retail and engineering figures are employee self-reports; Apple does not publish them.","tiers":[{"label":"Retail specialist","note":"store floor, all in","pay":70000},{"label":"Median employee","note":"Apple's SEC figure","pay":139483},{"label":"Senior engineer","note":"crowdsourced median","pay":358000},{"label":"Senior vice president","note":"each of several","pay":27000000},{"label":"Chief executive","note":"2025 total","pay":74294811}]}]};
+</script>
+</body>
+</html>
