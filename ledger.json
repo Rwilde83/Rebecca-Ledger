@@ -32,6 +32,19 @@
       ]
     },
     {
+      "name": "Starbucks",
+      "country": "US",
+      "fiscalYear": "2025",
+      "ratio": 1794,
+      "ratioNote": "CEO $31.0M vs median partner $17,279",
+      "caption": "Starbucks' median employee, by its own filing, is a part-time barista in the US who made $17,279. The CEO made $30,992,773. The prior year, with his sign-on stock grant counted, the gap was 6,666 to 1, the widest in the S&P 500.",
+      "source": "SEC DEF 14A, January 2026. Ratio computed from the two disclosed figures.",
+      "tiers": [
+        {"label": "Median partner", "note": "a part-time US barista", "pay": 17279},
+        {"label": "Chief executive", "note": "fiscal 2025 total", "pay": 30992773}
+      ]
+    },
+    {
       "name": "Nike",
       "country": "US",
       "fiscalYear": "2026",
