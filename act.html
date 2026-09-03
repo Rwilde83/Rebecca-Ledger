@@ -48,6 +48,11 @@
   .out.show{display:block}
   .letter{background:#fff;border:2px solid var(--ink);padding:1.5rem;white-space:pre-wrap;font-size:1rem;line-height:1.5;max-width:44rem;border-radius:4px}
   .lookup{margin-top:1.5rem;max-width:44rem}
+  .reps{margin-top:1.5rem;max-width:44rem}
+  .rep{border:2px solid var(--ink);border-radius:4px;padding:1rem;margin:.75rem 0;background:#fff}
+  .rep b{font-size:1.1rem}
+  .rep .m{color:var(--mute);font-size:.9rem;margin:.15rem 0 .6rem}
+  .rep .btn{padding:.6rem 1rem;font-size:.95rem}
   .lookup a{display:block;margin:.35rem 0}
   .ok{color:#1a7f37;font-weight:600;margin-left:.5rem}
 
@@ -91,6 +96,7 @@
     <div class="form">
       <div><label for="name">Your name</label><input id="name" autocomplete="name" placeholder="Your name"></div>
       <div><label for="place">City and state / region</label><input id="place" placeholder="Lake Stevens, Washington"></div>
+      <div id="zipwrap"><label for="zip">ZIP code <span class="mute">(US only — finds your members of Congress)</span></label><input id="zip" inputmode="numeric" maxlength="5" placeholder="98258" autocomplete="postal-code"><div class="hint">Used only in your browser to match a district. Never sent anywhere.</div></div>
       <div>
         <label for="country">Country</label>
         <select id="country">
@@ -131,6 +137,14 @@
         <button class="btn" id="copy">Copy letter</button><span id="copied" class="ok" hidden>Copied</span>
         <a class="btn secondary" id="mail" href="#">Open in email</a>
       </p>
+      <div class="reps" id="reps" hidden>
+        <h3>Your members of Congress</h3>
+        <p class="small mute" id="repsnote"></p>
+        <div id="repcards"></div>
+        <details style="margin-top:1rem"><summary>Prefer to call? 20-second script</summary>
+          <p id="script" class="small" style="margin-top:.5rem"></p>
+        </details>
+      </div>
       <div class="lookup" id="lookup">
         <h3>Find who to send it to</h3>
         <div id="links"></div>
@@ -207,7 +221,7 @@
 
 <footer>
   <div class="wrap">
-    <p>This page runs entirely in your browser. No form data is sent to any server. Representative lookups go to official government sites. Maintained by <a href="https://wilde.energy">Ryan Wilde</a>. Free to copy, adapt, and improve.</p>
+    <p>This page runs entirely in your browser. No form data is sent to any server. Representative lookups go to official government sites. U.S. Congress data is from the public unitedstates/congress-legislators project and the ZIP-to-district file from OpenSourceActivismTech, both bundled with this page; ZIPs that span districts are shown as multiple matches. Maintained by <a href="https://wilde.energy">Ryan Wilde</a>. Free to copy, adapt, and improve.</p>
   </div>
 </footer>
 
@@ -215,8 +229,20 @@
 (async function(){
   const $=id=>document.getElementById(id);
   const SITE='https://rebecca.wilde.energy/';
-  let data={companies:[]};
+  let data={companies:[]},REPS=null,ZIPS=null;
   try{const r=await fetch('ledger.json',{cache:'no-store'});data=await r.json();}catch(e){}
+  async function loadReps(){
+    if(REPS&&ZIPS)return;
+    try{const [a,b]=await Promise.all([fetch('reps.json'),fetch('zips.json')]);REPS=(await a.json()).reps;ZIPS=await b.json();}catch(e){REPS=[];ZIPS={}}
+  }
+  function repsFor(zip){
+    const d=ZIPS[zip]; if(!d)return null;
+    const dists=d.split('|'); const st=dists[0].split('-')[0];
+    const sens=REPS.filter(r=>r.chamber==='senate'&&r.state===st);
+    const houses=dists.map(x=>{const [s,n]=x.split('-');return REPS.find(r=>r.chamber==='house'&&r.state===s&&String(r.district)===n)}).filter(Boolean);
+    return {st,dists,sens,houses};
+  }
+  $('country').addEventListener('change',()=>{$('zipwrap').style.display=$('country').value==='US'?'':'none'});
   const cos=[...data.companies].filter(c=>c.ratio).sort((a,b)=>b.ratio-a.ratio);
   cos.forEach((c,i)=>{const o=document.createElement('option');o.value=i;o.textContent=`${c.name} — ${c.ratio.toLocaleString()} to 1`;$('company').appendChild(o)});
 
@@ -293,6 +319,29 @@ ${place}`;
       : links.map(([t,u])=>`<a href="${u}" target="_blank" rel="noopener">${t}</a>`).join('');
     $('out').classList.add('show');
     $('out').scrollIntoView({behavior:'smooth',block:'start'});
+    renderReps(text,c);
+  }
+  async function renderReps(text,c){
+    const zip=$('zip').value.trim();
+    const wantReps=$('country').value==='US'&&$('level').value==='national'&&/^\d{5}$/.test(zip);
+    $('reps').hidden=!wantReps; if(!wantReps)return;
+    await loadReps();
+    const r=repsFor(zip);
+    const cards=$('repcards'); cards.innerHTML='';
+    if(!r){$('repsnote').textContent='That ZIP isn\'t in the district file. Use the lookup links below.';return;}
+    const multi=r.houses.length>1;
+    $('repsnote').textContent=multi?`ZIP ${zip} spans ${r.houses.length} districts (${r.dists.join(', ')}). Your representative is one of these; the lookup link below will tell you which.`:`Matched to ${r.dists[0]}. Two senators and one representative.`;
+    const all=[...r.houses.map(h=>({...h,role:`U.S. Representative, ${h.state}-${h.district}`})),...r.sens.map(x=>({...x,role:`U.S. Senator, ${x.state}`}))];
+    all.forEach(p=>{
+      const d=document.createElement('div'); d.className='rep';
+      d.innerHTML=`<b>${p.name}</b><div class="m">${p.role} · ${p.party||''}${p.phone?' · '+p.phone:''}</div>
+        <a class="btn" href="${p.form||p.url}" target="_blank" rel="noopener" data-copy="1">Copy letter and open contact form</a>
+        ${p.phone?`<a class="btn secondary" href="tel:${p.phone.replace(/[^\d]/g,'')}">Call</a>`:''}`;
+      cards.appendChild(d);
+    });
+    cards.querySelectorAll('[data-copy]').forEach(a=>a.addEventListener('click',()=>{try{navigator.clipboard.writeText(text)}catch(e){}}));
+    const name=$('name').value.trim()||'a constituent', place=$('place').value.trim()||'your district';
+    $('script').textContent=`"Hi, my name is ${name}, I'm a constituent in ${place}. I'm calling to ask the ${r.sens.length?'Senator':'Representative'} to support extending pay-ratio disclosure, ending tax deductions for executive pay above a multiple of the median worker, and a living-wage floor for large employers. ${c?c.name+' pays its CEO '+c.ratio.toLocaleString()+' times its median worker, by its own filing. ':''}I'd like to know where they stand. Thank you."`;
   }
   $('go').addEventListener('click',build);
   $('copy').addEventListener('click',async()=>{try{await navigator.clipboard.writeText($('letter').textContent);$('copied').hidden=false;setTimeout(()=>$('copied').hidden=true,2000)}catch(e){}});
