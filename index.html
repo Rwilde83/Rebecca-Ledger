@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The Rebecca Ledger — what the world's companies pay, bottom to top, drawn to scale</title>
-<meta name="description" content="A public ledger of pay from the store floor to the CEO, worldwide, drawn to the same scale. And a design to make corruption unprofitable: AI companies audit each other, citizens audit the AI, and exposing corruption pays better than hiding it.">
+<title>The Rebecca Ledger — who gets paid, who owns it, and who's watching</title>
+<meta name="description" content="Pay from the floor to the CEO at the world's biggest companies, drawn to one scale, from their own filings. Then: who owns the company, and a design for AI that audits companies instead of serving them.">
 <meta property="og:title" content="The Rebecca Ledger">
-<meta property="og:description" content="One year of the CEO. A thousand years of the person who sold you the phone. Every company, every country, one scale.">
+<meta property="og:description" content="Starbucks: a part-time barista at $17,279, a CEO at $31 million. 1,794 to 1. Their own numbers. Every company, one scale.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&display=swap" rel="stylesheet">
 <style>
@@ -32,6 +32,13 @@
   section{padding:4rem 0;border-top:1px solid var(--rule)}
   .lede{font-size:1.25rem;line-height:1.45}
   .mute{color:var(--mute)} .small{font-size:.9rem}
+  .kicker{text-transform:uppercase;letter-spacing:.08em;font-size:.8rem;font-weight:600;color:var(--cobalt);margin-bottom:.75rem}
+  .three{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin:2rem 0 0}
+  .three div{border-top:3px solid var(--ink);padding-top:.6rem}
+  .three b{display:block;font-size:1.1rem;margin-bottom:.2rem}
+  .three p{font-size:.95rem;margin:0;color:var(--mute)}
+  @media (max-width:700px){.three{grid-template-columns:1fr}}
+  .pull{border-left:4px solid var(--marker);padding:.25rem 0 .25rem 1.25rem;margin:1.5rem 0;font-size:1.2rem;line-height:1.4;max-width:var(--prose)}
 
   header{padding:1.25rem 0}
   header .wrap{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;flex-wrap:wrap}
@@ -110,10 +117,10 @@
   <div class="wrap">
     <a class="brand" href="#top">The Rebecca Ledger</a>
     <nav aria-label="Sections">
-      <a href="#ledger">The ledger</a>
-      <a href="#how">The fix</a>
-      <a href="#rules">The rules</a>
-      <a href="#help">Get involved</a>
+      <a href="#ledger">Pay</a>
+      <a href="#ownership">Ownership</a>
+      <a href="#how">Who watches</a>
+      <a href="#press">Press</a>
     </nav>
   </div>
 </header>
@@ -122,10 +129,17 @@
 
 <section class="hero" id="ledger">
   <div class="wrap">
-    <h1>What the world's biggest companies pay, from the floor to the top, drawn to one scale.</h1>
-    <p class="lede prose">Every company below reports these numbers to regulators. Almost nobody reads them. This is what they look like side by side.</p>
+    <p class="kicker">Three questions, one ledger</p>
+    <h1>Who gets paid. Who owns it. Who's watching.</h1>
+    <p class="lede prose">Every large company already reports what its CEO makes and what its typical worker makes. Almost no one reads the filings. This page draws them to one scale, then asks the two questions that come next.</p>
 
-    <div class="ledger-controls">
+    <div class="three">
+      <div><b>Pay</b><p>Floor to top, one scale, from the company's own filing.</p></div>
+      <div><b>Ownership</b><p>How much of the company the people who run it actually hold.</p></div>
+      <div><b>Oversight</b><p>A design for AI that audits companies instead of serving them.</p></div>
+    </div>
+
+    <div class="ledger-controls" style="margin-top:3rem">
       <label for="pick">Company</label>
       <select id="pick" aria-controls="rows"></select>
     </div>
@@ -135,7 +149,29 @@
 
     <h2 style="margin-top:3rem">CEO pay as a multiple of the median worker</h2>
     <div class="grid" id="grid"></div>
-    <p class="caption" style="margin-top:1.25rem">Ratios are each company's own SEC or annual-report disclosure for its latest fiscal year, except the UK figure, which is the High Pay Centre's index-wide median. Companies use different methods, so treat cross-company comparison as approximate. Blue marks the ones under 100 to 1. New companies are added regularly; the data file is public.</p>
+    <p class="caption" style="margin-top:1.25rem">Ratios are each company's own SEC or annual-report disclosure for its latest fiscal year, except the UK figure, which is the High Pay Centre's index-wide median. Companies use different methods, so treat cross-company comparison as approximate. Blue marks ratios under 100 to 1: same laws, a fraction of the gap. New companies are added regularly; the data file is public.</p>
+  </div>
+</section>
+
+<section id="ownership">
+  <div class="wrap">
+    <p class="kicker">The second question</p>
+    <h2>Pay is the part you can see. Ownership is where the money lives.</h2>
+    <p class="prose">Cap every executive on this page at twenty times their median worker and you move roughly $150–200 billion a year worldwide, about a tenth of one percent of the global economy. Real, and worth doing, but not the whole story. A salary is labor income. Most extreme wealth is ownership: shares, dividends, capital gains. A pay cap does not touch it.</p>
+    <p class="prose">So the ledger is adding a second column: what share of each company is held by its rank-and-file employees. For most large companies the answer is close to zero. That is a number nobody publishes and everybody would understand.</p>
+    <div class="pull">The person who makes the coffee and the person who runs the company should live in the same economy. At 1,794 to 1, they don't.</div>
+    <h3>Five ways ownership has already been reset somewhere</h3>
+    <table>
+      <thead><tr><th>Mechanism</th><th>Where it already works</th><th>What it does</th></tr></thead>
+      <tbody>
+        <tr><td>Broad employee equity</td><td>Publix, WinCo, John Lewis (UK), thousands of ESOPs</td><td>Every worker gets shares every year as part of pay. Nothing is taken; new ownership is created and spread.</td></tr>
+        <tr><td>Citizens' wealth fund</td><td>Alaska Permanent Fund, Norway's sovereign fund</td><td>The public holds a slice of the economy and everyone gets the dividend.</td></tr>
+        <tr><td>Tax ownership like work</td><td>Proposed widely, partial in several countries</td><td>Equal rates on capital and labor income; a real inheritance tax above a very high threshold.</td></tr>
+        <tr><td>Antitrust</td><td>US 1911–1984, EU today</td><td>Concentrated ownership rides on concentrated markets. Break up the market, spread the ownership.</td></tr>
+        <tr><td>Workers on the board</td><td>Germany, above 2,000 employees</td><td>Doesn't change who owns shares. Changes who owns decisions.</td></tr>
+      </tbody>
+    </table>
+    <p class="prose small mute">The honest objections: capital taxes may reduce investment; wealth funds can be politicized; single-company employee stock is risky if the company fails, which is why Enron's workers were wiped out; founders who take large risks arguably earn large rewards. Serious versions of any reset are built around those, with diversified employee funds instead of single-company stock and thresholds high enough to touch only the top fraction of a percent.</p>
   </div>
 </section>
 
@@ -147,17 +183,18 @@
 
 <section id="how">
   <div class="wrap">
-    <h2>The fix</h2>
-    <p class="prose">The gap on the ledger isn't a mystery and it isn't a math problem. It persists because nobody is required to close it and nobody is paid to expose it. Change both. Four layers, each one already proven somewhere, never yet assembled.</p>
+    <p class="kicker">The third question</p>
+    <h2>Who watches</h2>
+    <p class="prose">The gap on the ledger persists for one reason: nobody is required to close it and nobody is paid to expose it. Change both. Four layers, each proven somewhere, never assembled. This is also how you keep AI itself honest while it is still small enough to hold.</p>
 
     <div class="flow">
       <div class="layer"><div class="n">1</div><div>
         <h3>Three AI monitors watch each other and every large company</h3>
-        <p>Three independent AI systems, run by organizations in different countries with different funding and different training. Each audits the other two, plus the payroll, executive pay, supplier contracts, and political spending of every company above a size threshold, in every country it sells in. Their auditing code is public. When they disagree, the disagreement is published too.</p>
+        <p>Three independent AI systems, run by organizations in different countries with different funding and different training. Each audits the other two, plus the payroll, executive pay, ownership, supplier contracts, and political spending of every company above a size threshold, in every country it sells in. Their auditing code is public. When they disagree, the disagreement is published too.</p>
       </div></div>
       <div class="layer"><div class="n">2</div><div>
         <h3>Citizens chosen by lottery check the AI</h3>
-        <p>Panels of ordinary people selected at random from every participating country, not elected. Short terms, paid well, rotated constantly, identities protected while serving. They can demand plain-language explanations, order re-analysis, and escalate findings. The AI cannot overrule them.</p>
+        <p>Panels of ordinary people selected at random from every participating country, not elected and not appointed. Short terms, paid well, rotated constantly, identities protected while serving. They can demand plain-language explanations, order re-analysis, and escalate findings. The AI cannot overrule them.</p>
       </div></div>
       <div class="layer"><div class="n">3</div><div>
         <h3>Whoever exposes corruption gets paid</h3>
@@ -170,7 +207,8 @@
       </div></div>
     </div>
 
-    <p class="prose" style="margin-top:2rem">This is also how you keep AI itself honest while it's still small enough to hold. An AI that audits companies in public, under citizen review, with its code open, is an AI that cannot quietly become something else. Build the watchdog before the thing it watches is too big to leash.</p>
+    <h3 style="margin-top:2.5rem">Why this reaches racism</h3>
+    <p class="prose">The bottom of every ladder on this page is disproportionately Black, brown, immigrant, and women: cashiers, baristas, warehouse workers, and the people in the factories overseas. Raise the floor and those are the people raised. Publish pay by job and location and unequal pay for equal work has nowhere to hide. Pick the watchers by lottery from everyone and the system cannot quietly become one group watching itself. It doesn't end racism. It takes away the dark, and racism needs the dark.</p>
   </div>
 </section>
 
@@ -186,6 +224,7 @@
         <tr><td>Skilled</td><td>Market pay. Bands published by level and location.</td></tr>
         <tr><td>Executives</td><td>Total compensation capped at 15 to 20 times the company's global median employee.</td></tr>
         <tr><td>Innovation</td><td>Royalties on specific products, paid to the people who built them, capped per person per breakthrough. Reward invention where it happens, not two levels up.</td></tr>
+        <tr><td>Ownership</td><td>Broad employee equity every year, held through a diversified fund so no worker's savings ride on one company.</td></tr>
         <tr><td>Profit share</td><td>A fixed percentage of net income distributed to all employees.</td></tr>
         <tr><td>Transparency</td><td>Pay ratio and bands published every year, in plain language, in every language the company operates in.</td></tr>
       </tbody>
@@ -218,18 +257,18 @@
         </ul>
       </div>
     </div>
-    <p class="prose" style="margin-top:2rem">Every component is proven. The assembly is unbuilt. That is either a reason it can't work, or a reason it hasn't been tried. Help figure out which.</p>
+    <p class="prose" style="margin-top:2rem">Every component is proven. The assembly is unbuilt. That is either a reason it can't work, or a reason it hasn't been tried. This is the conversation that needs to be happening in public, now, while the choice is still open.</p>
   </div>
 </section>
 
-<section class="cta" id="help">
+<section class="cta" id="press">
   <div class="wrap">
-    <h2>Three things you can do</h2>
-    <p class="prose">Send the ledger to one person. Tell me where the fix breaks. Or send me a company's numbers and I'll add them.</p>
+    <h2>For journalists, researchers, and anyone who wants to poke holes</h2>
+    <p class="prose">Every number links to a filing. The data is a single public file. The design is a public document. Take any of it, check it, use it, improve it. If you find an error, tell me and it will be fixed within the hour, publicly.</p>
     <p>
-      <a class="btn" href="design.md">Read the full design</a>
-      <a class="btn secondary" href="mailto:ryan@wilde.energy?subject=Rebecca%20Ledger">Write to me</a>
-      <a class="btn secondary" href="ledger.json">The data</a>
+      <a class="btn" href="ledger.json">The data (JSON)</a>
+      <a class="btn secondary" href="design.md">The full design</a>
+      <a class="btn secondary" href="mailto:ryan@wilde.energy?subject=Rebecca%20Ledger">ryan@wilde.energy</a>
     </p>
     <details>
       <summary>Known weak points, so you don't have to find them</summary>
@@ -239,6 +278,7 @@
         <li>The system guarantees compliance, not fairness. If people agree on bad rules, it will enforce bad rules.</li>
         <li>Capital can flow to countries that opt out. The only lever is market access: sell here, get audited here.</li>
         <li>Public ownership only works if the public watches. Apathy beats every other failure mode.</li>
+        <li>The author is one person with a laptop, not an institution. That's either the weakness or the point.</li>
       </ul>
     </details>
   </div>
@@ -259,8 +299,8 @@
 
 <footer>
   <div class="wrap">
-    <p><strong>Sources.</strong> Company figures are from each company's own proxy statement or annual report for its most recent fiscal year (Apple, Walmart, Nike, Starbucks, PSEG: SEC Form DEF 14A, 2026). UK figures: High Pay Centre, Fat Cat Day 2026. Apple retail and engineering pay: Glassdoor, PayScale, levels.fyi self-reports; Apple does not publish them. Everything under "the rules" is a proposal.</p>
-    <p>Maintained by <a href="https://wilde.energy">Ryan Wilde</a>. Free to copy, adapt, and improve. If you build on it, tell me.</p>
+    <p><strong>Sources.</strong> Company figures are from each company's own proxy statement or annual report for its most recent fiscal year (Apple, Walmart, Nike, Starbucks, PSEG: SEC Form DEF 14A, 2026). UK figures: High Pay Centre, Fat Cat Day 2026. Apple retail and engineering pay: Glassdoor, PayScale, levels.fyi self-reports; Apple does not publish them. Global executive-pay totals and the ownership column are the author's estimates and are labeled as such. Everything under "the rules" is a proposal.</p>
+    <p>Maintained by <a href="https://wilde.energy">Ryan Wilde</a>, Lake Stevens, Washington. Free to copy, adapt, and improve. If you build on it, tell me.</p>
   </div>
 </footer>
 
@@ -277,10 +317,11 @@
         cap=document.getElementById('cap'), line=document.getElementById('ratioline'), grid=document.getElementById('grid');
   const fmt=n=>n>=1e6?'$'+(n/1e6).toFixed(n>=1e7?1:2).replace(/\.?0+$/,'')+'M':n>=1e3?'$'+Math.round(n/1e3)+'k':'$'+n;
 
-  data.companies.forEach((c,i)=>{const o=document.createElement('option');o.value=i;o.textContent=c.name+' · '+c.country;pick.appendChild(o)});
+  const ordered=[...data.companies].sort((a,b)=>(b.ratio||0)-(a.ratio||0));
+  ordered.forEach((c,i)=>{const o=document.createElement('option');o.value=i;o.textContent=c.name+' · '+c.country;pick.appendChild(o)});
 
   function render(i){
-    const c=data.companies[i]; const top=Math.max(...c.tiers.map(t=>t.pay));
+    const c=ordered[i]; const top=Math.max(...c.tiers.map(t=>t.pay));
     rows.classList.remove('in'); rows.innerHTML='';
     c.tiers.forEach(t=>{
       const w=Math.max(t.pay/top*100,0.05);
@@ -298,8 +339,7 @@
   }
   pick.addEventListener('change',e=>render(+e.target.value));
 
-  const sorted=[...data.companies].filter(c=>c.ratio).sort((a,b)=>b.ratio-a.ratio);
-  sorted.forEach(c=>{
+  ordered.filter(c=>c.ratio).forEach(c=>{
     const d=document.createElement('div'); d.className='co'+(c.ratio<100?' low':'');
     d.innerHTML=`<div class="r">${c.ratio.toLocaleString()}<small>to 1</small></div><div class="n">${c.name}</div><div class="d">${c.ratioNote||''}</div>`;
     grid.appendChild(d);
@@ -308,7 +348,7 @@
 })();
 </script>
 <script>
-window.__LEDGER_FALLBACK__={"companies":[{"name":"Apple","country":"US","ratio":533,"ratioNote":"CEO $74.3M vs median $139,483","caption":"Apple's own filings put the median employee at $139,483 and the CEO at $74.3 million. Retail and engineering figures are employee self-reports; Apple does not publish them.","tiers":[{"label":"Retail specialist","note":"store floor, all in","pay":70000},{"label":"Median employee","note":"Apple's SEC figure","pay":139483},{"label":"Senior engineer","note":"crowdsourced median","pay":358000},{"label":"Senior vice president","note":"each of several","pay":27000000},{"label":"Chief executive","note":"2025 total","pay":74294811}]}]};
+window.__LEDGER_FALLBACK__={"companies":[{"name":"Starbucks","country":"US","ratio":1794,"ratioNote":"CEO $31.0M vs median partner $17,279","caption":"Starbucks' median employee, by its own filing, is a part-time barista in the US who made $17,279. The CEO made $30,992,773.","tiers":[{"label":"Median partner","note":"a part-time US barista","pay":17279},{"label":"Chief executive","note":"fiscal 2025 total","pay":30992773}]}]};
 </script>
 </body>
 </html>
