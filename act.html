@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Take action — The Rebecca Ledger</title>
+<meta name="description" content="Write to your local, state, or national leaders in two minutes. Fill in four fields, get a letter, send it. Nothing is stored.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&display=swap" rel="stylesheet">
+<style>
+  :root{--paper:#F2F4F5;--ink:#1C2430;--cobalt:#1F4FD8;--marker:#F5C518;--mute:#6E7882;--rule:#D5DADF;--maxw:64rem;--prose:38rem}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:"Bricolage Grotesque",system-ui,-apple-system,"Segoe UI",sans-serif;font-size:1.0625rem;line-height:1.55;-webkit-font-smoothing:antialiased}
+  a{color:var(--cobalt)}
+  a:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid var(--marker);outline-offset:3px}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 1.25rem}
+  .prose{max-width:var(--prose)}
+  h1,h2,h3{font-variation-settings:"opsz" 96;line-height:1.05;margin:0 0 1rem;letter-spacing:-.01em}
+  h1{font-size:clamp(2.2rem,6vw,4rem);font-weight:700;max-width:20ch}
+  h2{font-size:clamp(1.5rem,3.6vw,2.2rem);font-weight:650}
+  h3{font-size:1.2rem;font-weight:600;margin-bottom:.35rem}
+  p{margin:0 0 1rem}
+  section{padding:3.5rem 0;border-top:1px solid var(--rule)}
+  .lede{font-size:1.2rem;line-height:1.45}
+  .mute{color:var(--mute)} .small{font-size:.9rem}
+  .kicker{text-transform:uppercase;letter-spacing:.08em;font-size:.8rem;font-weight:600;color:var(--cobalt);margin-bottom:.75rem}
+
+  header{padding:1.25rem 0}
+  header .wrap{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;flex-wrap:wrap}
+  .brand{font-weight:700;text-decoration:none;color:var(--ink);font-size:1.1rem}
+  nav a{color:var(--ink);text-decoration:none;margin-left:1.1rem;font-size:.95rem;border-bottom:2px solid transparent}
+  nav a:hover{border-bottom-color:var(--marker)}
+
+  .hero{padding:2rem 0 3rem;border-top:0}
+
+  /* form */
+  .form{display:grid;grid-template-columns:1fr 1fr;gap:1rem 1.5rem;max-width:44rem;margin-top:1.5rem}
+  .form .full{grid-column:1/-1}
+  @media (max-width:600px){.form{grid-template-columns:1fr}}
+  label{display:block;font-weight:500;margin-bottom:.3rem}
+  input,select,textarea{font:inherit;width:100%;padding:.6rem .7rem;border:2px solid var(--ink);background:#fff;border-radius:4px;color:var(--ink)}
+  textarea{min-height:6rem;resize:vertical}
+  .hint{font-size:.85rem;color:var(--mute);margin-top:.25rem}
+  .btn{display:inline-block;background:var(--ink);color:var(--paper);text-decoration:none;padding:.85rem 1.3rem;font-weight:600;border-radius:4px;margin:.25rem .5rem .25rem 0;border:0;cursor:pointer;font:inherit;font-weight:600}
+  .btn.secondary{background:transparent;color:var(--ink);border:2px solid var(--ink)}
+  .btn:hover{opacity:.9}
+  .out{margin-top:2rem;display:none}
+  .out.show{display:block}
+  .letter{background:#fff;border:2px solid var(--ink);padding:1.5rem;white-space:pre-wrap;font-size:1rem;line-height:1.5;max-width:44rem;border-radius:4px}
+  .lookup{margin-top:1.5rem;max-width:44rem}
+  .lookup a{display:block;margin:.35rem 0}
+  .ok{color:#1a7f37;font-weight:600;margin-left:.5rem}
+
+  /* plan */
+  .tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:1.5rem}
+  @media (max-width:760px){.tiers{grid-template-columns:1fr}}
+  .tier{border-top:3px solid var(--ink);padding-top:.75rem}
+  .tier .t{font-size:1.6rem;font-weight:700;line-height:1;font-variation-settings:"opsz" 96}
+  .tier ul{padding-left:1.1rem;margin:.75rem 0 0}
+  .tier li{margin-bottom:.5rem}
+
+  .share{background:var(--marker);padding:3rem 0}
+  .share .btn{margin-bottom:.5rem}
+
+  footer{padding:2.5rem 0 3rem;font-size:.9rem;color:var(--mute)}
+  footer p{max-width:var(--prose)}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <a class="brand" href="index.html">The Rebecca Ledger</a>
+    <nav aria-label="Sections">
+      <a href="index.html#ledger">The ledger</a>
+      <a href="#write">Write</a>
+      <a href="#plan">Plan</a>
+      <a href="#share">Share</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<section class="hero" id="write">
+  <div class="wrap">
+    <p class="kicker">Two minutes</p>
+    <h1>Start the conversation with the people who represent you.</h1>
+    <p class="lede prose">Fill in four things. You'll get a letter in your own name, with the numbers from the ledger, addressed to whoever you choose. Copy it, send it, done. Nothing you type here is stored or sent anywhere except by you.</p>
+
+    <div class="form">
+      <div><label for="name">Your name</label><input id="name" autocomplete="name" placeholder="Your name"></div>
+      <div><label for="place">City and state / region</label><input id="place" placeholder="Lake Stevens, Washington"></div>
+      <div>
+        <label for="country">Country</label>
+        <select id="country">
+          <option value="US">United States</option>
+          <option value="UK">United Kingdom</option>
+          <option value="CA">Canada</option>
+          <option value="AU">Australia</option>
+          <option value="EU">European Union member</option>
+          <option value="OTHER">Somewhere else</option>
+        </select>
+      </div>
+      <div>
+        <label for="level">Who are you writing to?</label>
+        <select id="level">
+          <option value="national">My national representative</option>
+          <option value="state">My state / provincial representative</option>
+          <option value="local">My mayor or city council</option>
+          <option value="company">A company on the ledger</option>
+        </select>
+      </div>
+      <div class="full">
+        <label for="company">Which company bothers you most? <span class="mute">(optional)</span></label>
+        <select id="company"><option value="">Pick one, or leave blank</option></select>
+      </div>
+      <div class="full">
+        <label for="why">One sentence about why this matters to you <span class="mute">(optional, but it's the part they'll read)</span></label>
+        <textarea id="why" placeholder="I've worked retail for eleven years. I know exactly what $17,000 a year looks like."></textarea>
+      </div>
+      <div class="full">
+        <button class="btn" id="go">Write my letter</button>
+      </div>
+    </div>
+
+    <div class="out" id="out">
+      <h2>Your letter</h2>
+      <div class="letter" id="letter"></div>
+      <p style="margin-top:1rem">
+        <button class="btn" id="copy">Copy letter</button><span id="copied" class="ok" hidden>Copied</span>
+        <a class="btn secondary" id="mail" href="#">Open in email</a>
+      </p>
+      <div class="lookup" id="lookup">
+        <h3>Find who to send it to</h3>
+        <div id="links"></div>
+        <p class="small mute" style="margin-top:.75rem">These go to official lookup pages. Enter your address there, get the name and contact form, paste the letter. Contact forms usually work better than email for elected officials.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="plan">
+  <div class="wrap">
+    <p class="kicker">A real plan</p>
+    <h2>What one person can do</h2>
+    <p class="prose">Pick the tier that fits the time you have. Every one of these moves something. The middle column is where most change actually comes from.</p>
+    <div class="tiers">
+      <div class="tier">
+        <div class="t">5 minutes</div>
+        <ul>
+          <li>Send the letter above to one person who represents you.</li>
+          <li>Send the ledger link to one friend with one company's number.</li>
+          <li>Post one company. Close with "Their own numbers."</li>
+        </ul>
+      </div>
+      <div class="tier">
+        <div class="t">1 hour a week</div>
+        <ul>
+          <li>Look up your own employer's pay ratio (search: "[company] proxy statement pay ratio"). If it isn't on the ledger, send it in.</li>
+          <li>Bring it up at one meeting, one dinner, one group chat. Say the sentence. Let people argue.</li>
+          <li>Ask a local candidate, in public, whether they'd support publishing pay bands and capping executive pay at a multiple of the median worker. Record the answer.</li>
+          <li>Show up to one city council or school board meeting and use the public comment slot. Two minutes, the numbers, the sentence.</li>
+        </ul>
+      </div>
+      <div class="tier">
+        <div class="t">If you have more</div>
+        <ul>
+          <li>If you work inside a large company: find out what percent of shares employees hold. Ask HR. Ask in writing. The answer is a number for the ledger.</li>
+          <li>If you're a union member: propose a pay-ratio and ownership disclosure clause for the next contract.</li>
+          <li>If you're a shareholder, even a tiny one: shareholder proposals on pay ratios and employee ownership are legal in most countries and companies hate them. Look up how at your broker.</li>
+          <li>If you can code, research, or write: the data file is public. Add companies. Add countries. Translate the site. Fork it.</li>
+          <li>If you know a journalist, a professor, a legislator's staffer: send them the ledger and one question. Not the whole vision. One question.</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 style="margin-top:3rem">What to ask for, in order</h3>
+    <p class="prose">Ask for the smallest thing first. Each one makes the next one easier.</p>
+    <ol class="prose">
+      <li><strong>Publish it.</strong> Pay ratio, pay bands by job and location, and employee ownership share, every year, in plain language. This is already law for the ratio in the US and UK; the ask is to extend it and make it readable.</li>
+      <li><strong>Floor it.</strong> A living-wage requirement for large employers and their suppliers, indexed to local cost of living.</li>
+      <li><strong>Cap it.</strong> Executive pay above a multiple of the median worker loses tax deductibility, then loses eligibility for public contracts, then is capped outright.</li>
+      <li><strong>Share it.</strong> Broad employee ownership through diversified funds; workers on boards above a size threshold.</li>
+      <li><strong>Watch it.</strong> Independent, publicly governed auditing, with citizen oversight and whistleblower bounties. The design is on the main page.</li>
+    </ol>
+  </div>
+</section>
+
+<section class="share" id="share">
+  <div class="wrap">
+    <h2>Send it somewhere</h2>
+    <p class="prose">The ledger only works if people see it. Pick one.</p>
+    <p>
+      <a class="btn" id="sh-fb" href="#" target="_blank" rel="noopener">Facebook</a>
+      <a class="btn" id="sh-x" href="#" target="_blank" rel="noopener">X</a>
+      <a class="btn" id="sh-bs" href="#" target="_blank" rel="noopener">Bluesky</a>
+      <a class="btn" id="sh-li" href="#" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn" id="sh-rd" href="#" target="_blank" rel="noopener">Reddit</a>
+      <a class="btn secondary" id="sh-tx" href="#">Text message</a>
+      <button class="btn secondary" id="sh-cp">Copy link</button><span id="cp2" class="ok" hidden>Copied</span>
+    </p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>This page runs entirely in your browser. No form data is sent to any server. Representative lookups go to official government sites. Maintained by <a href="https://wilde.energy">Ryan Wilde</a>. Free to copy, adapt, and improve.</p>
+  </div>
+</footer>
+
+<script>
+(async function(){
+  const $=id=>document.getElementById(id);
+  const SITE='https://rebecca.wilde.energy/';
+  let data={companies:[]};
+  try{const r=await fetch('ledger.json',{cache:'no-store'});data=await r.json();}catch(e){}
+  const cos=[...data.companies].filter(c=>c.ratio).sort((a,b)=>b.ratio-a.ratio);
+  cos.forEach((c,i)=>{const o=document.createElement('option');o.value=i;o.textContent=`${c.name} — ${c.ratio.toLocaleString()} to 1`;$('company').appendChild(o)});
+
+  const LOOKUP={
+    US:{national:[['Find your U.S. Representative','https://www.house.gov/representatives/find-your-representative'],['Find your U.S. Senators','https://www.senate.gov/senators/senators-contact.htm']],
+        state:[['Find your state legislators (OpenStates)','https://openstates.org/find_your_legislator/']],
+        local:[['Search "[your city] city council contact"','https://www.google.com/search?q=city+council+contact']]},
+    UK:{national:[['Find your MP','https://members.parliament.uk/FindYourMP']],
+        state:[['Find your MSP / MS / MLA (WriteToThem)','https://www.writetothem.com/']],
+        local:[['Find your councillors (WriteToThem)','https://www.writetothem.com/']]},
+    CA:{national:[['Find your Member of Parliament','https://www.ourcommons.ca/members/en']],
+        state:[['Search "[your province] MLA / MPP / MNA lookup"','https://www.google.com/search?q=find+my+MLA']],
+        local:[['Search "[your city] council contact"','https://www.google.com/search?q=city+council+contact']]},
+    AU:{national:[['Find your federal MP','https://www.aph.gov.au/Senators_and_Members/Members']],
+        state:[['Search "[your state] find my member"','https://www.google.com/search?q=find+my+state+member+parliament']],
+        local:[['Search "[your council] contact"','https://www.google.com/search?q=council+contact']]},
+    EU:{national:[['Find your MEP','https://www.europarl.europa.eu/meps/en/home'],['Search "[your country] find my representative"','https://www.google.com/search?q=find+my+representative']],
+        state:[['Search "[your region] parliament members"','https://www.google.com/search?q=regional+parliament+members']],
+        local:[['Search "[your city] council contact"','https://www.google.com/search?q=city+council+contact']]},
+    OTHER:{national:[['Search "[your country] find my representative"','https://www.google.com/search?q=find+my+representative']],
+        state:[['Search "[your region] representative contact"','https://www.google.com/search?q=regional+representative+contact']],
+        local:[['Search "[your city] council contact"','https://www.google.com/search?q=city+council+contact']]}
+  };
+
+  function fmt(n){return n>=1e6?'$'+(n/1e6).toFixed(1).replace(/\.0$/,'')+' million':'$'+n.toLocaleString()}
+
+  function build(){
+    const name=$('name').value.trim()||'[your name]';
+    const place=$('place').value.trim()||'[your city]';
+    const country=$('country').value, level=$('level').value;
+    const ci=$('company').value; const c=ci!==''?cos[+ci]:cos[0];
+    const why=$('why').value.trim();
+
+    const salutation = level==='company' ? `To the Board of Directors of ${c?c.name:'[company]'},` :
+      level==='local' ? 'Dear Mayor and Council,' :
+      level==='state' ? 'Dear Representative,' : 'Dear Representative,';
+
+    const example = c ? `${c.name} is a good example. By its own filing, its median employee made ${fmt(c.tiers[0].pay)} last year while its chief executive made ${fmt(c.tiers[c.tiers.length-1].pay)}. That is ${c.ratio.toLocaleString()} to 1. It would take the median worker ${c.ratio.toLocaleString()} years to earn what the top earns in one.` : '';
+
+    let ask;
+    if(level==='company'){
+      ask=`I am asking the board to do three things, and to say publicly whether it will:\n\n1. Publish pay bands by job and location, and the share of the company owned by rank-and-file employees, every year in plain language.\n2. Set a living-wage floor for every worker and supplier worker, indexed to local cost of living.\n3. Cap total executive compensation at twenty times the global median employee.\n\nNone of this threatens the company's success. It threatens only the size of the gap.`;
+    } else if(level==='local'){
+      ask=`I am asking the council to do two things:\n\n1. Pass a resolution calling on large employers in our area to publish pay bands, pay ratios, and employee ownership share every year in plain language.\n2. Require any company receiving city contracts or incentives to pay a living wage indexed to local cost of living and to disclose its executive-to-median pay ratio.\n\nCities have done this before. Ours can.`;
+    } else if(level==='state'){
+      ask=`I am asking you to support, or introduce, legislation that does three things:\n\n1. Requires large employers in the state to publish pay bands by job and location, their executive-to-median pay ratio, and the share of the company owned by rank-and-file employees.\n2. Ties state contracts and tax incentives to a living-wage floor and a maximum executive-to-median pay ratio.\n3. Creates a whistleblower bounty for exposing concealed compensation or wage violations, funded from the penalties.`;
+    } else {
+      ask=`I am asking you to support, or introduce, legislation that does four things:\n\n1. Extends pay-ratio disclosure to include pay bands by job and location and the share of each company owned by its rank-and-file employees, published yearly in plain language.\n2. Removes tax deductibility for executive compensation above a set multiple of the company's median worker.\n3. Establishes a living-wage floor for large employers and their suppliers, indexed to local cost of living.\n4. Funds independent, publicly governed auditing of large companies, with citizen oversight and whistleblower bounties paid from penalties.\n\nEvery one of these exists somewhere already. None of them exists together. That is the conversation I am asking you to start.`;
+    }
+
+    const whyLine = why ? `\n\n${why}` : '';
+    const text=`${salutation}
+
+My name is ${name} and I live in ${place}. I am writing about the gap between what the largest companies pay the people at the top and the people who do the work.
+
+${example}${whyLine}
+
+These are not activist numbers. They are the companies' own disclosures, filed with regulators, which almost no one reads. I found them at rebecca.wilde.energy, where they are drawn to one scale.
+
+${ask}
+
+I would like to know where you stand. I will share your answer, or your silence, with the people I know.
+
+Thank you for your time.
+
+${name}
+${place}`;
+    $('letter').textContent=text;
+    const subj=encodeURIComponent('Executive pay and the people who do the work');
+    $('mail').href=`mailto:?subject=${subj}&body=${encodeURIComponent(text)}`;
+    const links=(LOOKUP[country]||LOOKUP.OTHER)[level==='company'?'national':level]||[];
+    $('links').innerHTML=level==='company'
+      ? `<a href="https://www.google.com/search?q=${encodeURIComponent((c?c.name:'company')+' investor relations contact board of directors')}" target="_blank" rel="noopener">Find ${c?c.name+"'s":'the company\'s'} investor relations and board contact</a>`
+      : links.map(([t,u])=>`<a href="${u}" target="_blank" rel="noopener">${t}</a>`).join('');
+    $('out').classList.add('show');
+    $('out').scrollIntoView({behavior:'smooth',block:'start'});
+  }
+  $('go').addEventListener('click',build);
+  $('copy').addEventListener('click',async()=>{try{await navigator.clipboard.writeText($('letter').textContent);$('copied').hidden=false;setTimeout(()=>$('copied').hidden=true,2000)}catch(e){}});
+
+  // share
+  const top=cos[0];
+  const msg=top?`${top.name}: median worker ${fmt(top.tiers[0].pay)}, CEO ${fmt(top.tiers[top.tiers.length-1].pay)}. ${top.ratio.toLocaleString()} to 1. Their own numbers.`:'Who gets paid. Who owns it. Who\'s watching.';
+  const u=encodeURIComponent(SITE), t=encodeURIComponent(msg);
+  $('sh-fb').href=`https://www.facebook.com/sharer/sharer.php?u=${u}`;
+  $('sh-x').href=`https://twitter.com/intent/tweet?text=${t}&url=${u}`;
+  $('sh-bs').href=`https://bsky.app/intent/compose?text=${t}%20${u}`;
+  $('sh-li').href=`https://www.linkedin.com/sharing/share-offsite/?url=${u}`;
+  $('sh-rd').href=`https://www.reddit.com/submit?url=${u}&title=${encodeURIComponent('CEO pay vs. the median worker, drawn to scale, from the companies\' own filings')}`;
+  $('sh-tx').href=`sms:?&body=${t}%20${u}`;
+  $('sh-cp').addEventListener('click',async()=>{try{await navigator.clipboard.writeText(SITE);$('cp2').hidden=false;setTimeout(()=>$('cp2').hidden=true,2000)}catch(e){}});
+})();
+</script>
+</body>
+</html>
