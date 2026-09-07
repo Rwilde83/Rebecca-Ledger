@@ -58,6 +58,19 @@
       ]
     },
     {
+      "name": "Costco",
+      "country": "US",
+      "fiscalYear": "2024",
+      "ratio": 262,
+      "ratioNote": "CEO $12.2M vs median employee $47,092",
+      "caption": "Same industry as Walmart, a third of the ratio. Costco's median employee made $47,092 and its CEO, who started as a forklift driver, made $12,229,741. Walmart's median worker made $30,520 that year. Same business, same country, same laws; one company chose differently. Latest ratio confirmed from the proxy is fiscal 2024; fiscal 2025 will be updated when verified.",
+      "source": "SEC DEF 14A, December 2024",
+      "tiers": [
+        {"label": "Median employee", "note": "Costco's SEC figure", "pay": 47092},
+        {"label": "Chief executive", "note": "fiscal 2024 total", "pay": 12229741}
+      ]
+    },
+    {
       "name": "FTSE 100 (UK, index median)",
       "country": "UK",
       "fiscalYear": "2025",
